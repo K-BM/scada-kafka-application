@@ -2,10 +2,29 @@
 
 This project simulates a real-time data pipeline where a fake SCADA system streams sensor data every second. The architecture includes Kafka for real-time data streaming and PostgreSQL for persistent storage.
 
-## Ì≥å Architecture Overview
+## ÔøΩÔøΩÔøΩ Architecture Overview
 
 \`\`\`
 [Fake SCADA System] --> [Kafka Producer] --> [Kafka Topic] --> [Kafka Consumer] --> [PostgreSQL Database]
+
+FAKE SCADA SYSTEM (Python script)
+        |
+        | generates fake sensor readings every second
+        ‚Üì
+KAFKA PRODUCER (Python)  ‚Üê part of the SCADA simulation
+        |
+        | publishes messages to Kafka topic (e.g., "sensor_data")
+        ‚Üì
+KAFKA TOPIC (Apache Kafka)
+        |
+        | acts as a message broker
+        ‚Üì
+KAFKA CONSUMER (Python)
+        |
+        | listens to topic, extracts message
+        ‚Üì
+PostgreSQL Database
+
 \`\`\`
 
 ### Components:
@@ -18,7 +37,7 @@ This project simulates a real-time data pipeline where a fake SCADA system strea
 
 ---
 
-## Ì¥ß Setup Instructions
+## ÔøΩÔøΩÔøΩ Setup Instructions
 
 ### 1. Clone the Repository
 
@@ -108,7 +127,7 @@ CREATE TABLE IF NOT EXISTS sensor_data (
 
 ---
 
-## Ì∫Ä Running the Project
+## ÔøΩÔøΩÔøΩ Running the Project
 
 ### Start Kafka Producer (Fake SCADA System)
 
@@ -124,7 +143,7 @@ python consumer.py
 
 ---
 
-## Ì≥ä Query the Data in PostgreSQL
+## ÔøΩÔøΩÔøΩ Query the Data in PostgreSQL
 
 \`\`\`bash
 psql -U postgres -d scada_db
@@ -148,7 +167,7 @@ For a real SCADA system:
 
 ---
 
-## Ì≥Å Project Structure
+## ÔøΩÔøΩÔøΩ Project Structure
 
 \`\`\`
 ‚îú‚îÄ‚îÄ producer.py         # Simulates SCADA sensor data and sends to Kafka
@@ -161,7 +180,7 @@ For a real SCADA system:
 
 ---
 
-## Ì∑™ Sample Output
+## ÔøΩÔøΩÔøΩ Sample Output
 
 \`\`\`sql
 SELECT * FROM sensor_data ORDER BY id DESC LIMIT 5;
@@ -174,6 +193,6 @@ SELECT * FROM sensor_data ORDER BY id DESC LIMIT 5;
 
 ---
 
-## Ì≥¨ Contact
+## ÔøΩÔøΩÔøΩ Contact
 
 For questions or feedback, feel free to reach out or contribute!

@@ -26,7 +26,7 @@ consumer = KafkaConsumer(
     'scada-sensor-data',
     bootstrap_servers=['172.31.109.162:9092'],  # Your WSL IP
     value_deserializer=lambda x: json.loads(x.decode('utf-8')),
-    auto_offset_reset='earliest'
+    auto_offset_reset='latest'
 )
 
 # Insert data into PostgreSQL
