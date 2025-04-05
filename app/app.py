@@ -99,13 +99,11 @@ def update_plot(n, selected_sensor, selected_metric):
             SELECT timestamp, {selected_metric}, status 
             FROM sensor_data 
             WHERE sensor_id = :sensor_id
-            ORDER BY timestamp ASC
+            ORDER BY timestamp DESC
             LIMIT 500
         """
         df = pd.read_sql(text(query), engine, params={'sensor_id': selected_sensor})
         df['timestamp'] = pd.to_datetime(df['timestamp'], errors='coerce')
-        print(df.head())
-        print(df.columns)
 
         fig = px.line(
             df, x='timestamp', y=selected_metric,
@@ -124,4 +122,5 @@ def update_plot(n, selected_sensor, selected_metric):
         return px.line(title="Error"), f"Error: {str(e)}"
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8050)
+    app.run_server(debug=True, host='0.0.0.0', port=8050)
+
